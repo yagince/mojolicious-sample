@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Echo</title>
+    %= javascript begin
+      var ws = new WebSocket('ws://localhost:3000/echo-socket');
+      ws.onmessage = function (event) {
+        var li = document.createElement('li');
+        li.innerHTML += JSON.parse(event.data).msg;
+        var ul = document.getElementById('messages');
+        ul.insertBefore(li, ul.children[0]);
+      };
+      ws.onopen = function (event) {
+        ws.send(JSON.stringify({msg: 'I ♥ Mojolicious!'}));
+      };
+      function send(msg) {
+        console.log(msg);
+        ws.send(JSON.stringify({msg: msg})); 
+      }
+    % end
+  </head>
+  <body>
+    <input type="text" id="msg"/>
+    <button onclick="send(document.getElementById('msg').value);">send</button>
+    <ul id="messages"></ul>
+  </body>
+</html>
