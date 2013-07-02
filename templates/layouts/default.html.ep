@@ -1,0 +1,8 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    %= content_for 'header'
+  </head>
+  <body><%= content %></body>
+</html>

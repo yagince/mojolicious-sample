@@ -1,0 +1,26 @@
+% title 'Hoge';
+% layout 'default';
+% content_for header => begin
+<meta http-equiv="Pragma" content="no-cache">
+% end
+
+<h1> Hoge </h1>
+
+<ul>
+  <li>
+    %= $stash_data
+  </li>
+  <li>
+    %= $val
+  </li>
+</ul>
+
+<ul>
+% foreach my $key (keys %{$req_data}) {
+<li>
+  %= $key
+  :
+  %= $req_data->{$key}
+</li>
+% }
+</ul>
